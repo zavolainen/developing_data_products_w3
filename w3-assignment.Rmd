@@ -1,0 +1,53 @@
+---
+title: "Developing Data Products"
+subtitle: "WEEK 3"
+author: "Jani Savolainen"
+date: "11 December 2018"
+output: ioslides_presentation
+---
+
+## R Markdown
+
+This page is part of the Coursera Data Science Specialization Course Developing Data Products. The aim is to create an online presentation with a interactive plot created with Plotly package.
+
+
+## Code to reproduce 3D Scatter plot
+
+```{r cars, echo = TRUE, eval=FALSE}
+
+library(plotly); library(dplyr); library(tibble); data(mtcars)
+
+dat <- mtcars; dat <- rownames_to_column(dat, "model")
+
+plot_ly(data = dat, type = "scatter3d", x = ~mpg, y = ~hp, 
+        z = ~qsec, color = ~factor(cyl), hoverinfo = "text", 
+        text = ~paste(model, "<br>Miles/Gallon: ", mpg, 
+                       "<br>Horsepower: ", hp, "<br>1/4 mile time: ", 
+                      qsec, "sec", "<br>Cylinders: ", cyl, 
+                      "<br>Weight: ", wt * 1000, " lbs", "<br>")) %>%
+        layout(scene = list(xaxis = list(title = 'Horsepower'), 
+                            yaxis = list(title = 'Miles per Gallon'), 
+                            zaxis = list(title = '1/4 mile time')))
+
+```
+
+## 3D Scatter plot with car data
+
+```{r, echo=FALSE, message = FALSE}
+
+
+library(plotly); library(dplyr); library(tibble); data(mtcars)
+
+dat <- mtcars; dat <- rownames_to_column(dat, "model")
+
+plot_ly(data = dat, type = "scatter3d", x = ~mpg, y = ~hp, 
+        z = ~qsec, color = ~factor(cyl), hoverinfo = "text", text = ~paste(model, "<br>Miles/Gallon: ", mpg, 
+                       "<br>Horsepower: ", hp, "<br>1/4 mile time: ", 
+                      qsec, "sec", "<br>Cylinders: ", cyl, 
+                      "<br>Weight: ", wt * 1000, " lbs", "<br>")) %>%
+        layout(scene = list(xaxis = list(title = 'Horsepower'), 
+                            yaxis = list(title = 'Miles per Gallon'), 
+                            zaxis = list(title = '1/4 mile time')))
+
+```
+
